@@ -1,0 +1,69 @@
+{
+  "Zebra": {
+    "version": "1.0.0",
+    "description": "BOSIS handler",
+    "system": {
+      "os": "generic",
+      "architecture": "x64",
+      "maxThreads": 16,
+      "logging": {
+        "enabled": true,
+        "level": "info",
+        "logFilePath": "/var/log/zebra.log"
+      }
+    },
+    "network": {
+      "protocols": ["HTTP", "HTTPS", "TCP", "UDP"],
+      "ports": [80, 443, 8080],
+      "timeout": 30,
+      "retries": 3,
+      "proxy": {
+        "enabled": false,
+        "url": "",
+        "auth": {
+          "username": "",
+          "password": ""
+        }
+      }
+    },
+    "signals": {
+      "enableSignalMonitoring": true,
+      "signalTypes": ["HTTP_REQUEST", "SOCKET_CONNECT", "DATA_PACKET", "PING"],
+      "handlers": {
+        "onReceive": "log",
+        "onError": "retry",
+        "onTimeout": "alert"
+      }
+    },
+    "security": {
+      "encryption": {
+        "enabled": true,
+        "algorithm": "AES-256"
+      },
+      "authentication": {
+        "type": "token",
+        "tokenExpiry": 3600
+      },
+      "firewall": {
+        "enabled": true,
+        "rules": [
+          {
+            "action": "allow",
+            "port": 443,
+            "protocol": "HTTPS"
+          },
+          {
+            "action": "block",
+            "port": 23,
+            "protocol": "TCP"
+          }
+        ]
+      }
+    },
+    "tasks": {
+      "autoUpdate": true,
+      "updateIntervalHours": 24,
+      "maintenanceTasks": ["cleanupLogs", "refreshCache", "verifySignals"]
+    }
+  }
+}
