@@ -4,8 +4,8 @@ Dim fso, backendPath, sessionPath, backendContent, sessionContent
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 
-backendPath = "C:..\Wwrkstation\workstation.py"
-sessionPath = "C:\Workstation\session.py"
+backendPath = "C:..\workstation\workstation.py"
+sessionPath = "C:..\workstation\session.py"
 
 If Not fso.FolderExists("C:\Workstation") Then
     fso.CreateFolder "C:\Workstation"
