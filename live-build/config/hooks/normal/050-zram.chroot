@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+apt-get update
+apt-get install -y --no-install-recommends zram-tools
+
+cat >/etc/default/zramswap <<'EOF'
+ALGO=zstd
+PERCENT=50
+PRIORITY=100
+EOF
+
+systemctl enable zramswap.service || true
+
+

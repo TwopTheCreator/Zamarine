@@ -1,0 +1,46 @@
+#!/bin/sh
+set -e
+
+apt-get update
+apt-get install -y --no-install-recommends build-essential nasm cargo
+
+APP_SRC=/workspace/apps
+if [ -d "$APP_SRC" ]; then
+  echo "Building demo apps..."
+  make -C "$APP_SRC/hello-c" install
+  make -C "$APP_SRC/hello-asm" install
+  if [ -f "$APP_SRC/hello-rust/Cargo.toml" ]; then
+    (cd "$APP_SRC/hello-rust" && cargo build --release && install -Dm755 target/release/hello-rust /usr/local/bin/hello-rust)
+  fi
+fi
+
+# Desktop entries
+mkdir -p /usr/share/applications
+cat >/usr/share/applications/zamarine-hello-c.desktop <<'EOF'
+[Desktop Entry]
+Type=Application
+Name=Zamarine Hello (C)
+Exec=/usr/local/bin/hello-c
+Terminal=true
+Categories=Utility;
+EOF
+
+cat >/usr/share/applications/zamarine-hello-rust.desktop <<'EOF'
+[Desktop Entry]
+Type=Application
+Name=Zamarine Hello (Rust)
+Exec=/usr/local/bin/hello-rust
+Terminal=true
+Categories=Utility;
+EOF
+
+cat >/usr/share/applications/zamarine-hello-asm.desktop <<'EOF'
+[Desktop Entry]
+Type=Application
+Name=Zamarine Hello (Assembly)
+Exec=/usr/local/bin/hello-asm
+Terminal=true
+Categories=Utility;
+EOF
+
+

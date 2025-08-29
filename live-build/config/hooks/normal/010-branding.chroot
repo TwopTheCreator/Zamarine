@@ -1,0 +1,37 @@
+#!/bin/sh
+set -e
+
+ASSETS_DIR=/usr/local/share/zamarine-assets
+
+# Set default wallpaper and icon theme for KDE via skel
+mkdir -p /etc/skel/.config
+
+cat >/etc/skel/.config/kdeglobals <<'EOF'
+[$Version]
+update_info=]
+
+[Icons]
+Theme=Papirus-Dark
+EOF
+
+mkdir -p /etc/skel/.config/plasmarc
+
+mkdir -p /etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc.d
+
+# Place a default wallpaper link
+mkdir -p /usr/share/wallpapers/Zamarine
+if [ -f "$ASSETS_DIR/wallpapers/zamarine1.jpg" ]; then
+  cp "$ASSETS_DIR/wallpapers/zamarine1.jpg" /usr/share/wallpapers/Zamarine/wallpaper.jpg
+fi
+
+# SDDM branding to Breeze theme wallpaper
+mkdir -p /etc/sddm.conf.d
+cat >/etc/sddm.conf.d/10-zamarine.conf <<'EOF'
+[Theme]
+Current=breeze
+
+[General]
+DisplayServer=wayland
+EOF
+
+

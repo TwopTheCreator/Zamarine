@@ -1,0 +1,82 @@
+# nshell Default Theme
+
+# Color definitions
+COLOR_BLACK="\033[0;30m"
+COLOR_RED="\033[0;31m"
+COLOR_GREEN="\033[0;32m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_BLUE="\033[0;34m"
+COLOR_MAGENTA="\033[0;35m"
+COLOR_CYAN="\033[0;36m"
+COLOR_WHITE="\033[0;37m"
+COLOR_RESET="\033[0m"
+
+# NT Style Colors
+COLOR_NT_BLUE="\033[38;5;33m"
+COLOR_NT_GRAY="\033[38;5;248m"
+COLOR_NT_WHITE="\033[38;5;255m"
+
+# Prompt styling
+PROMPT_COLOR="$COLOR_NT_WHITE"
+PATH_COLOR="$COLOR_NT_BLUE"
+TEXT_COLOR="$COLOR_NT_WHITE"
+ERROR_COLOR="$COLOR_RED"
+SUCCESS_COLOR="$COLOR_GREEN"
+WARNING_COLOR="$COLOR_YELLOW"
+INFO_COLOR="$COLOR_CYAN"
+
+# Set the prompt
+PROMPT="$PATH_COLOR\w$COLOR_NT_WHITE$PROMPT$COLOR_RESET "
+
+# Function to colorize command output
+colorize_output() {
+    local text="$1"
+    local color="$2"
+    echo -e "${color}${text}${COLOR_RESET}"
+}
+
+# Function to display error messages
+error_msg() {
+    colorize_output "ERROR: $1" "$ERROR_COLOR"
+}
+
+# Function to display success messages
+success_msg() {
+    colorize_output "$1" "$SUCCESS_COLOR"
+}
+
+# Function to display warning messages
+warning_msg() {
+    colorize_output "WARNING: $1" "$WARNING_COLOR"
+}
+
+# Function to display info messages
+info_msg() {
+    colorize_output "$1" "$INFO_COLOR"
+}
+
+# NT-style banner
+show_banner() {
+    clear
+    echo -e "${COLOR_NT_WHITE}Microsoft(R) Windows NT
+(C) Copyright Microsoft Corp 1990-$(date +'%Y'). All rights reserved.${COLOR_RESET}"
+    echo -e "${COLOR_NT_BLUE}NSHELL v0.1 - NT Style Shell${COLOR_RESET}"
+    echo -e "Type 'help' for available commands"
+    echo
+}
+
+# Set window title if possible
+set_title() {
+    echo -ne "\033]0;NSHELL - NT Style Shell\007"
+}
+
+# Initialize theme
+initialize_theme() {
+    set_title
+    if [ "$SHOW_BANNER" = "true" ]; then
+        show_banner
+    fi
+}
+
+# Call initialize_theme when the theme is sourced
+initialize_theme

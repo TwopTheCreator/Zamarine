@@ -1,0 +1,51 @@
+#!/bin/sh
+set -e
+
+apt-get update
+apt-get install -y --no-install-recommends cargo
+
+CLI_SRC=/workspace/cli/zamarine-cli
+if [ -f "$CLI_SRC/Cargo.toml" ]; then
+  echo "Building Zamarine CLI..."
+  (cd "$CLI_SRC" && cargo build --release)
+  install -Dm755 "$CLI_SRC/target/release/zamarine" /usr/local/bin/zamarine
+fi
+
+# Simple man page
+mkdir -p /usr/local/share/man/man1
+cat >/usr/local/share/man/man1/zamarine.1 <<'EOF'
+.TH ZAMARINE 1 "Zamarine CLI"
+.SH NAME
+zamarine \- Zamarine OS management CLI
+.SH SYNOPSIS
+.B zamarine
+\fICOMMAND\fR [OPTIONS]
+.SH COMMANDS
+.TP
+sysinfo
+Print system and OS information.
+.TP
+update
+Run apt full-upgrade and flatpak update.
+.TP
+kernel --info
+Show kernel version details.
+.TP
+flatpak [--install APPID]
+List remotes/apps or install a flatpak app.
+.TP
+service NAME [--enable|--disable|--status]
+Manage a systemd service.
+EOF
+
+# Bash completion (basic)
+mkdir -p /etc/bash_completion.d
+cat >/etc/bash_completion.d/zamarine <<'EOF'
+_zamarine()
+{
+    COMPREPLY=( $(compgen -W "sysinfo update kernel flatpak service" -- ${COMP_WORDS[1]}) )
+}
+complete -F _zamarine zamarine
+EOF
+
+

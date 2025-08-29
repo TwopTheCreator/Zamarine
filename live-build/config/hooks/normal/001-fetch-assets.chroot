@@ -1,0 +1,34 @@
+#!/bin/sh
+set -e
+
+# This runs in chroot during build. Fetch icon themes and wallpapers from the web.
+
+ASSETS_DIR=/usr/local/share/zamarine-assets
+mkdir -p "$ASSETS_DIR/icons" "$ASSETS_DIR/wallpapers"
+
+# Example icon themes: Papirus and Tela
+apt-get update
+apt-get install -y --no-install-recommends curl ca-certificates xz-utils tar unzip
+
+echo "Fetching Papirus icon theme..."
+curl -L -o /tmp/papirus.tar.xz https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/refs/heads/master.tar.gz || true
+if [ -s /tmp/papirus.tar.xz ]; then
+  mkdir -p /usr/share/icons
+  tar -C /usr/share/icons -xzf /tmp/papirus.tar.xz --strip-components=1 papirus-icon-theme-master
+fi
+
+echo "Fetching Tela icon theme..."
+curl -L -o /tmp/tela.zip https://github.com/vinceliuice/Tela-icon-theme/archive/refs/heads/master.zip || true
+if [ -s /tmp/tela.zip ]; then
+  unzip -q /tmp/tela.zip -d /tmp/tela
+  mkdir -p /usr/share/icons/Tela
+  cp -a /tmp/tela/Tela-icon-theme-master/* /usr/share/icons/
+fi
+
+echo "Fetching wallpapers..."
+curl -L -o "$ASSETS_DIR/wallpapers/zamarine1.jpg" https://images.unsplash.com/photo-1502082553048-f009c37129b9 || true
+curl -L -o "$ASSETS_DIR/wallpapers/zamarine2.jpg" https://images.unsplash.com/photo-1500530855697-b586d89ba3ee || true
+
+chmod -R 755 "$ASSETS_DIR"
+
+

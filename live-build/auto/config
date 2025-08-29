@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+# Debian release and architecture
+LB_DISTRIBUTION=${LB_DISTRIBUTION:-bookworm}
+LB_ARCHITECTURES=${LB_ARCHITECTURES:-amd64}
+
+lb config \
+  --distribution ${LB_DISTRIBUTION} \
+  --architectures ${LB_ARCHITECTURES} \
+  --debian-installer live \
+  --iso-volume ZAMARINE_${LB_DISTRIBUTION}_$(date +%Y%m%d) \
+  --iso-application Zamarine \
+  --iso-preparer Zamarine-Team \
+  --iso-publisher Zamarine \
+  --bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us username=zamarine" \
+  --linux-flavours amd64 \
+  --archive-areas "main contrib non-free non-free-firmware" \
+  --apt-recommends true \
+  --backports true \
+  --firmware-binary true \
+  --firmware-chroot true \
+  --updates true
+
+

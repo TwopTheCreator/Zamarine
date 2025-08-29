@@ -1,0 +1,12 @@
+#!/bin/sh
+# This hook installs locally built kernel .deb packages into the chroot at build time
+set -e
+
+KPKG_DIR=/workspace/out/kernel
+if [ -d "$KPKG_DIR" ]; then
+  echo "Installing local kernel packages from $KPKG_DIR"
+  dpkg -i $KPKG_DIR/linux-image-*.deb || apt-get -f install -y
+  dpkg -i $KPKG_DIR/linux-headers-*.deb || true
+fi
+
+

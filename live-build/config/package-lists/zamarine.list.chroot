@@ -1,0 +1,127 @@
+# Desktop and core
+kde-plasma-desktop
+plasma-desktop
+plasma-workspace
+plasma-wayland-session
+sddm
+sddm-theme-breeze
+konsole
+kate
+okular
+dolphin
+ark
+gwenview
+spectacle
+
+# Base utilities and firmware
+linux-image-amd64
+firmware-linux
+firmware-realtek
+firmware-iwlwifi
+firmware-amd-graphics
+firmware-misc-nonfree
+network-manager
+curl
+wget
+git
+vim
+htop
+gnupg
+ca-certificates
+openssh-client
+
+# Filesystems & storage tools
+btrfs-progs
+xfsprogs
+f2fs-tools
+exfatprogs
+ntfs-3g
+lvm2
+mdadm
+nvme-cli
+parted
+gparted
+
+# Office & productivity
+libreoffice
+libreoffice-l10n-en-gb
+hunspell-en-us
+thunderbird
+thunderbird-l10n-en-us
+
+# Browsers
+firefox-esr
+chromium
+
+# Media
+vlc
+mpv
+audacity
+ffmpeg
+
+# Graphics
+inkscape
+gimp
+krita
+
+# Dev tools
+build-essential
+cmake
+python3
+python3-pip
+clang
+llvm
+lld
+gdb
+valgrind
+strace
+perf
+nasm
+yasm
+qemu-system-x86
+qemu-utils
+openjdk-17-jdk
+nodejs
+npm
+docker.io
+podman
+virt-manager
+qemu-kvm
+libvirt-daemon-system
+bridge-utils
+binutils
+make
+pkg-config
+
+# Gaming and graphics
+steam-installer
+steam-devices
+mesa-utils
+mesa-vulkan-drivers
+vulkan-tools
+gamemode
+vkbasalt
+wine
+winetricks
+lutris
+protontricks
+
+# System shells and tools
+zsh
+fish
+bash-completion
+tlp
+powertop
+bluez
+bluez-tools
+cups
+system-config-printer
+avahi-daemon
+
+# Extras
+flatpak
+gnome-disk-utility
+timeshift
+syncthing
+
+

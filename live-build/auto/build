@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+cd /workspace/live-build
+
+export DEBIAN_FRONTEND=noninteractive
+
+./auto/config
+
+mkdir -p config/hooks/normal
+mkdir -p config/includes.chroot
+mkdir -p /workspace/out
+
+lb clean --purge || true
+lb build || (echo "Build failed" && exit 1)
+
+# Move artifacts to /workspace/out via bind mount
+find . -maxdepth 1 -type f -name "*.iso" -exec mv {} /workspace/out/ \; || true
+find . -maxdepth 1 -type f -name "*.img" -exec mv {} /workspace/out/ \; || true
+
+echo "Artifacts in /workspace/out:"
+ls -lah /workspace/out || true
+
+

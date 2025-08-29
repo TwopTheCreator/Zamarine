@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+apt-get update
+apt-get install -y --no-install-recommends flatpak
+
+# Add Flathub remote and install popular heavy apps
+mkdir -p /var/lib/flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo || true
+
+# Install apps non-interactively where possible (may be skipped if offline)
+flatpak -y install flathub com.brave.Browser || true
+flatpak -y install flathub com.visualstudio.code || true
+flatpak -y install flathub org.videolan.VLC || true
+flatpak -y install flathub com.discordapp.Discord || true
+
+
