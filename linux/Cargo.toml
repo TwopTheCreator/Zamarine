@@ -1,0 +1,23 @@
+[workspace]
+members = [
+    "core/kernel",
+    "core/drivers/storage",
+    "core/drivers/network",
+    "core/drivers/display",
+    "core/scheduler",
+    "core/memory",
+    "core/fs",
+    "system/services",
+    "system/daemons",
+    "api/rest",
+    "api/grpc",
+    "api/web",
+    "cli",
+    "utils/logging",
+    "utils/testing",
+    "utils/benchmarking"
+]
+
+[profile.release]
+lto = true
+codegen-units = 1

@@ -1,0 +1,24 @@
+Original Authors
+----------------
+Peter Mattis      <petm@xcf.berkeley.edu>
+Spencer Kimball   <spencer@xcf.berkeley.edu>
+Josh MacDonald    <jmacd@xcf.berkeley.edu>
+
+
+Other people who made significant
+improvements to GLIB (shamelessly
+ripped from the ChangeLog, listed
+in alphabetical order)
+---------------------------------
+Raja R Harinath <harinath@cs.umn.edu>
+Tim Janik <timj@gtk.org>
+Paolo Molaro <lupus@debian.org>
+Manish Singh <yosh@gimp.org>
+Owen Taylor <otaylor@gtk.org>
+
+
+Also, thanks to Shawn T. Amundson <amundson@gtk.org>
+for doing releases of GLIB.
+
+There are also many others who have contributed patches and fixes;
+we thank them, for helping us in advancing GLIB.
