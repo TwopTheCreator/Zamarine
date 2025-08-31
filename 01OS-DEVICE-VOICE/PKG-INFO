@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: 01OS
+Version: 0.0.14
+Summary: The #1 open-source voice interface for desktop, mobile, and ESP32 chips.
+License: AGPL
+Author: Killian
+Author-email: killian@openinterpreter.com
+Requires-Python: >=3.10,<3.12
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: livekit (>=0.12.1,<0.13.0)
+Requires-Dist: livekit-agents (>=0.8.6,<0.9.0)
+Requires-Dist: livekit-plugins-deepgram (>=0.6.5,<0.7.0)
+Requires-Dist: livekit-plugins-elevenlabs (>=0.7.3,<0.8.0)
+Requires-Dist: livekit-plugins-openai (>=0.8.1,<0.9.0)
+Requires-Dist: livekit-plugins-silero (>=0.6.4,<0.7.0)
+Requires-Dist: ngrok (>=1.4.0,<2.0.0)
+Requires-Dist: open-interpreter[os,server] (>=0.3.8,<0.4.0)
+Requires-Dist: pynput (>=1.7.7,<2.0.0)
+Requires-Dist: realtimestt (>=0.2.41,<0.3.0)
+Requires-Dist: realtimetts[all] (>=0.4.5,<0.5.0)
+Requires-Dist: segno (>=1.6.1,<2.0.0)
+Requires-Dist: yaspin (>=3.0.2,<4.0.0)
+Description-Content-Type: text/markdown
+
+We no longer support installation from `pip`, and instead recommend cloning the repository locally.
+
+Visit [our GitHub repository](https://github.com/OpenInterpreter/01/) for more information.
+
+*The 01 is an open-source voice interface for desktop, mobile, and ESP32 chips.*
