@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1a1a2e;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.dock-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+}
+
+.dock-container.visible {
+    transform: translateY(0);
+}
+
+.dock {
+    background: rgba(26, 26, 46, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateZ(0);
+}
+
+.dock-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    min-width: 600px;
+}
+
+.grid-item {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    will-change: transform, box-shadow, background, filter;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+    border-radius: 18px;
+    transform: translateZ(0);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.grid-item:hover {
+    transform: translateY(-30px) translateZ(50px) rotateX(-10deg) rotateY(5deg) scale(1.3);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 25px 40px rgba(0, 0, 0, 0.3),
+        0 0 50px rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    filter: brightness(1.2);
+}
+
+.grid-item:hover::before {
+    opacity: 1;
+    transform: translateZ(20px);
+}
+
+/* 3D hover effect */
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 18px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    transform: translateZ(40px);
+    pointer-events: none;
+}
+
+.grid-item:hover::after {
+    opacity: 1;
+    transform: translateZ(60px);
+}
+
+/* 3D pulse animation for grid items */
+@keyframes subtlePulse {
+    0%, 100% { 
+        transform: translateY(0) translateZ(0) rotateX(0) rotateY(0); 
+    }
+    50% { 
+        transform: translateY(-5px) translateZ(10px) rotateX(2deg) rotateY(2deg); 
+    }
+}
+
+/* Add animation to grid items */
+.grid-item {
+    animation: subtlePulse 8s ease-in-out infinite;
+    will-change: transform, box-shadow, background;
+    transform-origin: center bottom;
+}
+
+/* Stagger the animations */
+.grid-item:nth-child(6n+1) { animation-delay: 0s; }
+.grid-item:nth-child(6n+2) { animation-delay: 0.5s; }
+.grid-item:nth-child(6n+3) { animation-delay: 1s; }
+.grid-item:nth-child(6n+4) { animation-delay: 1.5s; }
+.grid-item:nth-child(6n+5) { animation-delay: 2s; }
+.grid-item:nth-child(6n+6) { animation-delay: 2.5s; }
