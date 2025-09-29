@@ -2,6 +2,7 @@
 -- fucking shit for brains twop told me to learn lua
 -- i did
 -- and here it is fuckers
+--9/30/25 Twop - no the fuck i didnt
 local config = {
     rcp1 = {
         port = 8080,
