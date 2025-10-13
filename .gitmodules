@@ -1,0 +1,3 @@
+[submodule "cocoatly"]
+	path = cocoatly
+	url = https://github.com/cocoatly/cocoatly
