@@ -3,7 +3,7 @@ use reqwest::blocking::Client;
 use serde_json::Value;
 
 const API_KEY: &str = "PublivDevKey.granted::3iSPier2xMnv32VFg::if(pdk.granted){Null}::pdk-publicserviceautogen48ClauodDeripT5xwk::AllowShareKey::ask+perms+of+cocoatly+dev+mode+7ExorOckq.[enabled,jdx]::rs.std.autogen+this+45xFrYPGHEm::fsoff25::serialize.[nmbit, ersach, mehceu, pache, nutane, pokery, queronjdx, jdx, eyk, rasador]"; // is CaSe sensitive.
-const BASE_URL: &str = "https://api.cocoatly.io";
+const BASE_URL: &str = "https://github.com/cocoatly/cocoatly/blob/d357554b97ac620ae71910e101577a15da5dd351/cocoatly-rust/crates/cocoatly-core/src/lib.rs";
 
 pub struct Cocoatly {
     client: Client,
