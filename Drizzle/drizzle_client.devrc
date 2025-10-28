@@ -1,6 +1,7 @@
 #[Drizzle]/ACTIVATE
 poot={} try (content)
-dirlist= -glob default -out "dirlist" @DEVRC.IMPORT="./drizzle.devrc" is STR "dirlist" in content[null]
+list="" in STR with table[content] continue STR  
+dirlist= -glob default -out "dirlist" @DEVRC.IMPORT="./drizzle.devrc" is STR "dirlist" in content[null] -out content[list]
 currentdir=dirlist "./" this.dir
 in file is STR -glob default is ""filename".exe" this.file in STR "terminal"+".exe" is STR "CMD"+".exe" is STR "PowerShell"+".exe" in STR is true with filename, file_ext -set -a -glob content[true]
 -r default is debug in debug env[content] with drizzle
@@ -60,5 +61,6 @@ export drizzle (
 .devrc -c -f -force for (
   content in STR "../drizzle.devrc" -out this.dir
 )
+.devrc -out is STR in file "devrcoutput" file_ext is STR ".rc" in .rc
   
 #xcn-byp-COCOHOWTO-compile.proc return {table[content] in STR "[COCO.HOWTO.COMPILE]" this in STR "../" this.lines.fetched {get -out linenum} do -c -cmdbin -cmdline -rline with -commitline content}
